@@ -146,11 +146,24 @@ Configure Nodemailer with Mailpit for local development, wired into Better Auth 
 **Done when:** Verification emails send on sign up, Mailpit UI shows them locally, Inngest functions can send transactional emails, production SMTP config documented.
 - [ ] Design it (spec): `/solution-architect email delivery with nodemailer`
 
-### 15. Design system, icons, and visual polish · planned · needs a decision
+### 15. Design system, icons, and visual polish · in-progress
 
 Establish the Veni visual language on top of shadcn/ui: customize component variants, define icon usage (lucide-react), illustration/empty-state strategy, loading skeletons, toast patterns, and responsive breakpoints. Create a component style guide so every pilot screen feels cohesive and production-grade.
 **Done when:** Component variants documented, icon library decisions made, empty/loading/error states designed for all pilot flows, style guide page renders at `/style-guide`, no raw colors or ad-hoc spacing in pilot components.
-- [ ] Design it (spec): `/solution-architect design system icons and visual polish`
+- [x] Design it (spec): `/solution-architect design system icons and visual polish`
+- [x] Build it: `/feature-build design system icons and visual polish`
+   - [x] Add design tokens to globals.css (colors, spacing, typography, shadows)
+   - [x] Customize shadcn components with Veni variants
+   - [x] Create icon utility and standardize lucide-react usage
+   - [x] Build EmptyState component and variants
+   - [x] Build Skeleton component and variants
+   - [x] Customize Toast provider and patterns
+   - [x] Define responsive utilities and container
+   - [x] Build /style-guide page with all sections
+   - [x] Audit pilot components for raw colors/ad-hoc spacing
+- [ ] Verify it: `/verify-release design system icons and visual polish`
+- [ ] Test it: `/test-engineer design system icons and visual polish`
+Spec 0015 · code in `app/globals.css`, `components/ui/toast.tsx`, `components/icons.tsx`, `components/empty-state.tsx`, `components/skeleton.tsx`, `app/(site)/style-guide/`
 
 ## Pilot Public
 
