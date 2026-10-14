@@ -5,7 +5,11 @@ allowBuilds:
   core-js: true
   esbuild: true
   prisma: true
+<<<<<<< HEAD
   protobufjs: set this to true or false
+=======
+  protobufjs: true
+>>>>>>> cc062955ff14947e23f782f435cce3d2dae6ed35
   sharp: false
   unrs-resolver: false
   workerd: true
