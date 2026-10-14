@@ -149,11 +149,19 @@ Integrate Arcjet Shield for bot detection and attack protection globally, plus t
    - [x] Integration test: Shield blocks bot, rate limiter enforces per-plan limits
 Spec 0013 · code in `lib/arcjet/`, `middleware.ts`, `lib/arcjet/cert-generation.ts`
 
-### 14. Email delivery with Nodemailer · planned · needs a decision
+### 14. Email delivery with Nodemailer · done
 
 Configure Nodemailer with Mailpit for local development, wired into Better Auth for verification emails and Inngest for transactional sends (receipts, batch ready alerts).
 **Done when:** Verification emails send on sign up, Mailpit UI shows them locally, Inngest functions can send transactional emails, production SMTP config documented.
-- [ ] Design it (spec): `/solution-architect email delivery with nodemailer`
+- [x] Design it (spec): `/solution-architect email delivery with nodemailer`
+- [x] Build it: `/feature-build email delivery with nodemailer`
+   - [x] Create email service with Nodemailer transporter and templates
+   - [x] Wire into Better Auth for verification and reset emails
+   - [x] Create Inngest email helper for transactional sends
+   - [x] Add email logging to AuditEvent
+   - [x] Document production SMTP config
+   - [x] Integration test: sign up → verify email in Mailpit → reset password → Inngest sends transactional
+Spec 0014 · code in `lib/email.ts`, `lib/auth/email.ts`, `.env.example`
 
 ### 15. Design system, icons, and visual polish · planned · needs a decision
 
