@@ -141,15 +141,15 @@ function ToastIcon({ type }: { type: string | undefined }) {
   let icon: React.ReactNode = null;
 
   if (type === "success") {
-    icon = <CircleCheckIcon aria-hidden="true" />;
+    icon = <CircleCheckIcon aria-hidden="true" className="text-green-600 dark:text-green-400" />;
   }
 
   if (type === "info") {
-    icon = <InfoIcon aria-hidden="true" />;
+    icon = <InfoIcon aria-hidden="true" className="text-blue-600 dark:text-blue-400" />;
   }
 
   if (type === "warning") {
-    icon = <TriangleAlertIcon aria-hidden="true" />;
+    icon = <TriangleAlertIcon aria-hidden="true" className="text-amber-600 dark:text-amber-400" />;
   }
 
   if (type === "error") {
@@ -157,7 +157,7 @@ function ToastIcon({ type }: { type: string | undefined }) {
   }
 
   if (type === "loading") {
-    icon = <Loader2Icon className="animate-spin" aria-hidden="true" />;
+    icon = <Loader2Icon className="animate-spin text-primary" aria-hidden="true" />;
   }
 
   if (!icon) {
@@ -226,4 +226,41 @@ export {
   createToastManager,
   toast,
   useToastManager,
+};
+
+export interface ToastOptions {
+  title: string;
+  description?: string;
+  timeout?: number;
+}
+
+export function showToast(
+  type: "success" | "error" | "warning" | "info" | "loading",
+  options: ToastOptions,
+) {
+  return toast.add({
+    type,
+    title: options.title,
+    description: options.description,
+    timeout: options.timeout,
+  });
+}
+
+export const toastHelpers = {
+  success: (title: string, description?: string) =>
+    showToast("success", { title, description, timeout: 5000 }),
+
+  error: (title: string, description?: string) =>
+    showToast("error", { title, description, timeout: 0 }),
+
+  warning: (title: string, description?: string) =>
+    showToast("warning", { title, description, timeout: 8000 }),
+
+  info: (title: string, description?: string) =>
+    showToast("info", { title, description, timeout: 5000 }),
+
+  loading: (title: string, description?: string) =>
+    showToast("loading", { title, description, timeout: 0 }),
+
+  dismiss: (toastId?: string) => toast.close(toastId),
 };
