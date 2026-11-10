@@ -4,7 +4,12 @@ import { prisma } from "@/lib/prisma";
 const CHUNK_SIZE = 50;
 
 export const processCertificateBatch = inngest.createFunction(
-  { id: "process-certificate-batch", concurrency: 5, retries: 5, triggers: [{ event: "certs/generate.batch" }] },
+  {
+    id: "process-certificate-batch",
+    concurrency: 5,
+    retries: 5,
+    triggers: [{ event: "certs/generate.batch" }],
+  },
   async ({ event, step }) => {
     const { batchId, organizationId } = event.data;
 
@@ -14,7 +19,8 @@ export const processCertificateBatch = inngest.createFunction(
         include: { template: true },
       });
       if (!batch) throw new Error("Batch not found");
-      if (batch.organizationId !== organizationId) throw new Error("Organization mismatch");
+      if (batch.organizationId !== organizationId)
+        throw new Error("Organization mismatch");
       return batch;
     });
 
@@ -36,15 +42,21 @@ export const processCertificateBatch = inngest.createFunction(
     const pdfUrls: string[] = [];
 
     for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
-      const chunk = recipients.slice(chunkIndex * CHUNK_SIZE, (chunkIndex + 1) * CHUNK_SIZE);
-      
-      const chunkUrls = await step.run(`generate-chunk-${chunkIndex}`, async () => {
-        const urls = await generateCertificatePdfs(chunk, batch);
-        return urls;
-      });
-      
+      const chunk = recipients.slice(
+        chunkIndex * CHUNK_SIZE,
+        (chunkIndex + 1) * CHUNK_SIZE,
+      );
+
+      const chunkUrls = await step.run(
+        `generate-chunk-${chunkIndex}`,
+        async () => {
+          const urls = await generateCertificatePdfs(chunk, batch);
+          return urls;
+        },
+      );
+
       pdfUrls.push(...chunkUrls);
-      
+
       await step.run(`update-progress-${chunkIndex}`, async () => {
         await prisma.certificateBatch.update({
           where: { id: batchId },
@@ -67,7 +79,7 @@ export const processCertificateBatch = inngest.createFunction(
           completedAt: new Date(),
         },
       });
-      
+
       await prisma.auditEvent.create({
         data: {
           organizationId,
@@ -79,14 +91,27 @@ export const processCertificateBatch = inngest.createFunction(
       });
     });
 
-    return { success: true, batchId, zipUrl, recipientCount: recipients.length };
-  }
+    return {
+      success: true,
+      batchId,
+      zipUrl,
+      recipientCount: recipients.length,
+    };
+  },
 );
 
-async function generateCertificatePdfs(recipients: any[], batch: any): Promise<string[]> {
-  return recipients.map((r) => `${process.env.NEXT_PUBLIC_APP_URL}/api/certificates/${r.id}/pdf`);
+async function generateCertificatePdfs(
+  recipients: any[],
+  batch: any,
+): Promise<string[]> {
+  return recipients.map(
+    (r) => `${process.env.NEXT_PUBLIC_APP_URL}/api/certificates/${r.id}/pdf`,
+  );
 }
 
-async function createAndUploadZip(pdfUrls: string[], batchId: string): Promise<string> {
+async function createAndUploadZip(
+  pdfUrls: string[],
+  batchId: string,
+): Promise<string> {
   return `${process.env.NEXT_PUBLIC_APP_URL}/api/batches/${batchId}/zip`;
 }
