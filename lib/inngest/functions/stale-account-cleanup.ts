@@ -2,7 +2,11 @@ import { inngest } from "@/lib/inngest/client";
 import { prisma } from "@/lib/prisma";
 
 export const staleAccountCleanup = inngest.createFunction(
-  { id: "stale-account-cleanup", concurrency: 1, triggers: [{ cron: "0 3 * * *" }] },
+  {
+    id: "stale-account-cleanup",
+    concurrency: 1,
+    triggers: [{ cron: "0 3 * * *" }],
+  },
   async ({ step }) => {
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - 14);
@@ -33,5 +37,5 @@ export const staleAccountCleanup = inngest.createFunction(
     }
 
     return { deletedCount, cutoffDate: cutoffDate.toISOString() };
-  }
+  },
 );
