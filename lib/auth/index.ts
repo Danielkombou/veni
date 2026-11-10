@@ -1,9 +1,22 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { organization } from "better-auth/plugins";
-import { ac, owner, admin, member, eventManager, staff, speaker, volunteer } from "./permissions";
+import {
+  ac,
+  owner,
+  admin,
+  member,
+  eventManager,
+  staff,
+  speaker,
+  volunteer,
+} from "./permissions";
 import { prisma } from "@/lib/prisma";
-import { sendVerificationEmail, sendResetPasswordEmail, sendInvitationEmail } from "./email";
+import {
+  sendVerificationEmail,
+  sendResetPasswordEmail,
+  sendInvitationEmail,
+} from "./email";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -13,10 +26,26 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
-    sendVerificationEmail: async ({ user, url, token }: { user: { email: string }; url: string; token: string }) => {
+    sendVerificationEmail: async ({
+      user,
+      url,
+      token,
+    }: {
+      user: { email: string };
+      url: string;
+      token: string;
+    }) => {
       await sendVerificationEmail({ to: user.email, url, token });
     },
-    sendResetPasswordEmail: async ({ user, url, token }: { user: { email: string }; url: string; token: string }) => {
+    sendResetPasswordEmail: async ({
+      user,
+      url,
+      token,
+    }: {
+      user: { email: string };
+      url: string;
+      token: string;
+    }) => {
       await sendResetPasswordEmail({ to: user.email, url, token });
     },
   },
@@ -24,7 +53,15 @@ export const auth = betterAuth({
   emailVerification: {
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
-    sendVerificationEmail: async ({ user, url, token }: { user: { email: string }; url: string; token: string }) => {
+    sendVerificationEmail: async ({
+      user,
+      url,
+      token,
+    }: {
+      user: { email: string };
+      url: string;
+      token: string;
+    }) => {
       await sendVerificationEmail({ to: user.email, url, token });
     },
   },
@@ -97,7 +134,10 @@ export const auth = betterAuth({
         // Better Auth passes various data; extract what we need
         const email = data.email as string;
         const inviter = data.inviter as { name?: string; email: string };
-        const organization = data.organization as { name: string; slug: string };
+        const organization = data.organization as {
+          name: string;
+          slug: string;
+        };
         const invitation = data.invitation as { id: string; role: string };
         const url = `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/accept-invitation/${invitation.id}`;
         await sendInvitationEmail({
