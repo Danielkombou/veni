@@ -8,29 +8,32 @@ export async function middleware(request: NextRequest) {
   if (decision.isDenied()) {
     if (decision.reason.isRateLimit()) {
       const resetTime = decision.reason.resetTime as number | undefined;
-      const resetSeconds = resetTime 
-        ? Math.ceil((resetTime - Date.now()) / 1000) 
+      const resetSeconds = resetTime
+        ? Math.ceil((resetTime - Date.now()) / 1000)
         : 60;
       return NextResponse.json(
         { error: "Rate limit exceeded", message: "Too many requests" },
-        { status: 429, headers: { "Retry-After": String(resetSeconds) } }
+        { status: 429, headers: { "Retry-After": String(resetSeconds) } },
       );
     }
     if (decision.reason.isBot()) {
       return NextResponse.json(
         { error: "Bot detected", message: "Automated access is not allowed" },
-        { status: 403 }
+        { status: 403 },
       );
     }
     if (decision.reason.isShield()) {
       return NextResponse.json(
-        { error: "Security violation", message: "Request blocked by security rules" },
-        { status: 403 }
+        {
+          error: "Security violation",
+          message: "Request blocked by security rules",
+        },
+        { status: 403 },
       );
     }
     return NextResponse.json(
       { error: "Access denied", message: "Request blocked by security rules" },
-      { status: 403 }
+      { status: 403 },
     );
   }
 
