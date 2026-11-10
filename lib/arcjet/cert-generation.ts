@@ -10,20 +10,23 @@ export async function protectCertificateGeneration(plan: string) {
   }
 
   const limiter = getCertGenerationLimiter(plan);
-  
-  const decision = await limiter.protect({}, {
-    userId: session.user.id,
-    requested: 1,
-  });
+
+  const decision = await limiter.protect(
+    {},
+    {
+      userId: session.user.id,
+      requested: 1,
+    },
+  );
 
   if (decision.isDenied()) {
     if (decision.reason.isRateLimit()) {
       const resetTime = decision.reason.resetTime as number | undefined;
-      const resetSeconds = resetTime 
-        ? Math.ceil((resetTime - Date.now()) / 1000) 
+      const resetSeconds = resetTime
+        ? Math.ceil((resetTime - Date.now()) / 1000)
         : 60;
       throw new Error(
-        `Rate limit exceeded. Try again in ${resetSeconds} seconds.`
+        `Rate limit exceeded. Try again in ${resetSeconds} seconds.`,
       );
     }
     throw new Error("Security check failed");
