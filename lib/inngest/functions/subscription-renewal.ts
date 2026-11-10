@@ -2,7 +2,11 @@ import { inngest } from "@/lib/inngest/client";
 import { prisma } from "@/lib/prisma";
 
 export const subscriptionRenewalCron = inngest.createFunction(
-  { id: "subscription-renewal-cron", concurrency: 1, triggers: [{ cron: "0 4 * * *" }] },
+  {
+    id: "subscription-renewal-cron",
+    concurrency: 1,
+    triggers: [{ cron: "0 4 * * *" }],
+  },
   async ({ step }) => {
     const pastDueOrgs = await step.run("find-past-due-orgs", async () => {
       return prisma.organization.findMany({
@@ -20,18 +24,22 @@ export const subscriptionRenewalCron = inngest.createFunction(
       const subscription = org.subscriptions[0];
       if (!subscription) continue;
 
-      const paymentLink = await step.run(`create-renewal-link-${org.id}`, async () => {
-        const amount = org.plan === "YEARLY" 
-          ? parseInt(process.env.YEARLY_PRICE_XAF || "5000000", 10)
-          : parseInt(process.env.MONTHLY_PRICE_XAF || "500000", 10);
-        
-        return {
-          url: `${process.env.FAPSHI_API_URL}/payment-link`,
-          amount,
-          organizationId: org.id,
-          subscriptionId: subscription.id,
-        };
-      });
+      const paymentLink = await step.run(
+        `create-renewal-link-${org.id}`,
+        async () => {
+          const amount =
+            org.plan === "YEARLY"
+              ? parseInt(process.env.YEARLY_PRICE_XAF || "5000000", 10)
+              : parseInt(process.env.MONTHLY_PRICE_XAF || "500000", 10);
+
+          return {
+            url: `${process.env.FAPSHI_API_URL}/payment-link`,
+            amount,
+            organizationId: org.id,
+            subscriptionId: subscription.id,
+          };
+        },
+      );
 
       await step.run(`log-renewal-${org.id}`, async () => {
         await prisma.auditEvent.create({
@@ -49,5 +57,5 @@ export const subscriptionRenewalCron = inngest.createFunction(
     }
 
     return { renewedCount, orgIds: pastDueOrgs.map((o) => o.id) };
-  }
+  },
 );
