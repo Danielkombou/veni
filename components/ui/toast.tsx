@@ -141,15 +141,30 @@ function ToastIcon({ type }: { type: string | undefined }) {
   let icon: React.ReactNode = null;
 
   if (type === "success") {
-    icon = <CircleCheckIcon aria-hidden="true" className="text-green-600 dark:text-green-400" />;
+    icon = (
+      <CircleCheckIcon
+        aria-hidden="true"
+        className="text-green-600 dark:text-green-400"
+      />
+    );
   }
 
   if (type === "info") {
-    icon = <InfoIcon aria-hidden="true" className="text-blue-600 dark:text-blue-400" />;
+    icon = (
+      <InfoIcon
+        aria-hidden="true"
+        className="text-blue-600 dark:text-blue-400"
+      />
+    );
   }
 
   if (type === "warning") {
-    icon = <TriangleAlertIcon aria-hidden="true" className="text-amber-600 dark:text-amber-400" />;
+    icon = (
+      <TriangleAlertIcon
+        aria-hidden="true"
+        className="text-amber-600 dark:text-amber-400"
+      />
+    );
   }
 
   if (type === "error") {
@@ -157,7 +172,9 @@ function ToastIcon({ type }: { type: string | undefined }) {
   }
 
   if (type === "loading") {
-    icon = <Loader2Icon className="animate-spin text-primary" aria-hidden="true" />;
+    icon = (
+      <Loader2Icon className="animate-spin text-primary" aria-hidden="true" />
+    );
   }
 
   if (!icon) {
