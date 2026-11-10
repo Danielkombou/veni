@@ -258,12 +258,16 @@ describe("step 1 progress and collapse (AC-6, AC-14, AC-15)", () => {
     expect(
       screen.getByRole("heading", { name: "Certificate Preview & Generation" }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /generate all 3 certificates/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /generate all 3 certificates/i }),
+    ).toBeInTheDocument();
     expect(screen.getByRole("radiogroup")).toBeInTheDocument();
 
     // Step 5 is still inert (feature 8 not built yet) and only appears after step 4 completes
     // (when step > 4). It's not visible at step 4.
-    expect(screen.queryByRole("heading", { name: "Download the batch" })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Download the batch" }),
+    ).not.toBeInTheDocument();
 
     // Step 1 is the first collapsed card, so the first Change reopens it without
     // losing the template.
