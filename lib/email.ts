@@ -58,7 +58,7 @@ export async function sendPaymentReceiptEmail({
   paymentId: string;
 }) {
   const formattedAmount = (amount / 100).toLocaleString();
-  
+
   await sendEmail({
     to,
     subject: `Payment receipt for ${plan} plan - ${organizationName}`,
