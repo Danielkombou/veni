@@ -8,7 +8,9 @@ async function main() {
   const monthlyPrice = parseInt(process.env.MONTHLY_PRICE_XAF || "500000", 10);
   const yearlyPrice = parseInt(process.env.YEARLY_PRICE_XAF || "5000000", 10);
 
-  console.log(`📋 Plan prices: Monthly=${monthlyPrice} FCFA, Yearly=${yearlyPrice} FCFA`);
+  console.log(
+    `📋 Plan prices: Monthly=${monthlyPrice} FCFA, Yearly=${yearlyPrice} FCFA`,
+  );
 
   console.log("✅ Seed completed");
 }
