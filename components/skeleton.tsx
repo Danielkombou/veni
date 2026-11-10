@@ -13,7 +13,10 @@ export function SkeletonText({ className, lines = 1 }: SkeletonBlockProps) {
   return (
     <div className={cn("space-y-2", className)}>
       {Array.from({ length: lines }, (_, index) => (
-        <UiSkeleton key={index} className={index === lines - 1 ? "h-4 w-3/4" : "h-4 w-full"} />
+        <UiSkeleton
+          key={index}
+          className={index === lines - 1 ? "h-4 w-3/4" : "h-4 w-full"}
+        />
       ))}
     </div>
   );
@@ -21,7 +24,12 @@ export function SkeletonText({ className, lines = 1 }: SkeletonBlockProps) {
 
 export function SkeletonCard({ className }: { className?: string }) {
   return (
-    <div className={cn("space-y-4 rounded-lg border border-border bg-card p-4", className)}>
+    <div
+      className={cn(
+        "space-y-4 rounded-lg border border-border bg-card p-4",
+        className,
+      )}
+    >
       <UiSkeleton className="h-10 w-10 rounded-full" />
       <SkeletonText lines={2} />
       <div className="flex gap-2 pt-2">
