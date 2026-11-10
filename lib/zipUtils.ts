@@ -38,7 +38,9 @@ export const crc32 = (data: Uint8Array): number => {
  */
 const dosDateTime = (d = new Date()) => {
   const time =
-    (d.getHours() << 11) | (d.getMinutes() << 5) | Math.floor(d.getSeconds() / 2);
+    (d.getHours() << 11) |
+    (d.getMinutes() << 5) |
+    Math.floor(d.getSeconds() / 2);
   const date =
     ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
   return { time: time & 0xffff, date: date & 0xffff };
@@ -124,8 +126,8 @@ const buildEocd = (count: number, cdSize: number, cdOffset: number) => {
  */
 export const supportsStreamingZip = () =>
   typeof window !== "undefined" &&
-  typeof (window as unknown as { showSaveFilePicker?: unknown }).showSaveFilePicker ===
-    "function" &&
+  typeof (window as unknown as { showSaveFilePicker?: unknown })
+    .showSaveFilePicker === "function" &&
   window.isSecureContext;
 
 /**
@@ -167,7 +169,8 @@ export const streamZipToDisk = async (
   const writable = await handle.createWritable();
 
   let offset = 0;
-  const central: { name: string; crc: number; size: number; offset: number }[] = [];
+  const central: { name: string; crc: number; size: number; offset: number }[] =
+    [];
 
   for (const { name, blob } of entries) {
     const bytes = new Uint8Array(await blob.arrayBuffer());
