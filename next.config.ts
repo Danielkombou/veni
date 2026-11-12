@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Turbopack ignores the Prisma client runtime due to dynamic filesystem access
+  // Using standalone output mode for better compatibility
+  output: "standalone",
 };
 
 export default nextConfig;
