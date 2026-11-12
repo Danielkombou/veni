@@ -54,7 +54,8 @@ export function StepDone({
         </svg>
         <h2 className="font-heading text-2xl font-bold">Done!</h2>
         <p className="text-muted-foreground">
-          {recipientCount} certificates successfully generated as standalone PDFs and zipped.
+          {recipientCount} certificates successfully generated as standalone
+          PDFs and zipped.
         </p>
       </div>
 

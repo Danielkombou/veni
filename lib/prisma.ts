@@ -7,17 +7,22 @@ const globalForPrisma = globalThis as unknown as {
 export const prisma =
   globalForPrisma.prisma ??
   new PrismaClient({
-    log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+    log:
+      process.env.NODE_ENV === "development"
+        ? ["query", "error", "warn"]
+        : ["error"],
   });
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
-type TransactionClient = Parameters<Parameters<PrismaClient["$transaction"]>[0]>[0];
+type TransactionClient = Parameters<
+  Parameters<PrismaClient["$transaction"]>[0]
+>[0];
 
 export async function withRlsContext<T>(
   orgId: string | null,
   userId: string | null,
-  fn: (tx: TransactionClient) => Promise<T>
+  fn: (tx: TransactionClient) => Promise<T>,
 ): Promise<T> {
   return prisma.$transaction(async (tx) => {
     if (orgId) {
@@ -26,7 +31,9 @@ export async function withRlsContext<T>(
       await tx.$executeRawUnsafe(`RESET app.current_org_id;`);
     }
     if (userId) {
-      await tx.$executeRawUnsafe(`SET LOCAL app.current_user_id = '${userId}';`);
+      await tx.$executeRawUnsafe(
+        `SET LOCAL app.current_user_id = '${userId}';`,
+      );
     } else {
       await tx.$executeRawUnsafe(`RESET app.current_user_id;`);
     }

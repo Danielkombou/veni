@@ -3,7 +3,11 @@ import { prisma } from "@/lib/prisma";
 import { sendVerificationEmail } from "@/lib/auth/email";
 
 export const verificationReminder7d = inngest.createFunction(
-  { id: "verification-reminder-7d", concurrency: 10, triggers: [{ cron: "0 9 * * *" }] },
+  {
+    id: "verification-reminder-7d",
+    concurrency: 10,
+    triggers: [{ cron: "0 9 * * *" }],
+  },
   async ({ step }) => {
     const targetDate = new Date();
     targetDate.setDate(targetDate.getDate() - 7);
@@ -35,12 +39,19 @@ export const verificationReminder7d = inngest.createFunction(
       });
     }
 
-    return { remindedCount: users.length, targetDate: targetDate.toISOString() };
-  }
+    return {
+      remindedCount: users.length,
+      targetDate: targetDate.toISOString(),
+    };
+  },
 );
 
 export const verificationReminder12d = inngest.createFunction(
-  { id: "verification-reminder-12d", concurrency: 10, triggers: [{ cron: "0 9 * * *" }] },
+  {
+    id: "verification-reminder-12d",
+    concurrency: 10,
+    triggers: [{ cron: "0 9 * * *" }],
+  },
   async ({ step }) => {
     const targetDate = new Date();
     targetDate.setDate(targetDate.getDate() - 12);
@@ -72,6 +83,9 @@ export const verificationReminder12d = inngest.createFunction(
       });
     }
 
-    return { remindedCount: users.length, targetDate: targetDate.toISOString() };
-  }
+    return {
+      remindedCount: users.length,
+      targetDate: targetDate.toISOString(),
+    };
+  },
 );

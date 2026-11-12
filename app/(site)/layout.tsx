@@ -3,7 +3,7 @@ import { Header } from "@/components/header";
 
 export default function SiteLayout({ children }: LayoutProps<"/">) {
   return (
-    <div className="flex min-h-full flex-col">
+    <div className="flex min-h-screen flex-col">
       <Header />
       {children}
       <Footer year={new Date().getFullYear()} />

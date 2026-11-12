@@ -289,6 +289,12 @@ been applied to any ported code since nothing is ported.
   renders the theme provider, directly or through `app/layout.tsx`, throws without the stub.
   Removing it fails 10 tests today. Keep the stub before debugging such a failure.
 
+## Per-file commits
+
+Commit **per file changed** — one file = one commit, immediately after the edit. Never batch
+multiple files into a single commit. Message should describe the change to that file. If the same
+file is edited multiple times during a session, each edit gets its own commit.
+
 ## Agent skills
 
 - [tailwindcss](file:///home/afuhflynn/.agents/skills/tailwindcss/SKILL): Tailwind CSS 4

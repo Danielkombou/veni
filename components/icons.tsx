@@ -26,7 +26,12 @@ const sizeClasses: Record<IconSize, string> = {
   xl: "h-8 w-8",
 };
 
-export function Icon({ icon: IconComponent, size = "md", className, label }: IconProps) {
+export function Icon({
+  icon: IconComponent,
+  size = "md",
+  className,
+  label,
+}: IconProps) {
   return (
     <IconComponent
       className={cn(sizeClasses[size], className)}

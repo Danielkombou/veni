@@ -1,0 +1,10 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "pnpm build",
+  "outputDirectory": ".next",
+  "frameworkDependencies": [
+    "next@16.3.8",
+    "react@19.2.8",
+    "react-dom@19.2.8"
+  ]
+}

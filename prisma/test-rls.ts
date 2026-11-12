@@ -78,7 +78,8 @@ async function testRls() {
     if (!org) throw new Error("Org not found");
     const canGenerate = org.plan === "FREE_PILOT" && org.certificatesUsed < 1;
     console.log(`   Free Pilot can generate: ${canGenerate}`);
-    if (!canGenerate) throw new Error("Free Pilot should be able to generate 1 cert");
+    if (!canGenerate)
+      throw new Error("Free Pilot should be able to generate 1 cert");
   });
 
   console.log("8. Testing subscription state machine...");

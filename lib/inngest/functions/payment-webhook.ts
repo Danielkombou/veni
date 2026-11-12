@@ -3,7 +3,12 @@ import { prisma } from "@/lib/prisma";
 import crypto from "crypto";
 
 export const reconcileFapshiPayment = inngest.createFunction(
-  { id: "reconcile-fapshi-payment", concurrency: 10, retries: 5, triggers: [{ event: "fapshi/webhook.received" }] },
+  {
+    id: "reconcile-fapshi-payment",
+    concurrency: 10,
+    retries: 5,
+    triggers: [{ event: "fapshi/webhook.received" }],
+  },
   async ({ event, step }) => {
     const payload = event.data;
     const providerPaymentId = payload.transaction_id || payload.id;
@@ -22,12 +27,15 @@ export const reconcileFapshiPayment = inngest.createFunction(
       throw new Error("Invalid webhook signature");
     }
 
-    const existingPayment = await step.run("check-existing-payment", async () => {
-      return prisma.payment.findUnique({
-        where: { providerPaymentId },
-        include: { subscription: true },
-      });
-    });
+    const existingPayment = await step.run(
+      "check-existing-payment",
+      async () => {
+        return prisma.payment.findUnique({
+          where: { providerPaymentId },
+          include: { subscription: true },
+        });
+      },
+    );
 
     if (existingPayment) {
       return { idempotent: true, paymentId: existingPayment.id };
@@ -81,5 +89,5 @@ export const reconcileFapshiPayment = inngest.createFunction(
     }
 
     return { success: true, paymentId: payment.id };
-  }
+  },
 );

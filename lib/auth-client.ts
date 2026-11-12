@@ -1,6 +1,15 @@
 import { createAuthClient } from "better-auth/client";
 import { organizationClient } from "better-auth/client/plugins";
-import { ac, owner, admin, member, eventManager, staff, speaker, volunteer } from "@/lib/auth/permissions";
+import {
+  ac,
+  owner,
+  admin,
+  member,
+  eventManager,
+  staff,
+  speaker,
+  volunteer,
+} from "@/lib/auth/permissions";
 
 export const authClient = createAuthClient({
   baseURL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
