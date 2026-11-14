@@ -218,6 +218,29 @@ when porting, they are the places Next.js behaves differently from Vite:
     pnpm format    # biome format --write
     pnpm test      # vitest run
 
+## Local services
+
+Postgres 16, Mailpit, and the Inngest dev server are the local stand-ins for
+`docker-compose.yml`. The Cloud Agent start script brings them up and then runs
+`pnpm dev` on port 3000.
+
+- Database: `postgresql://veni_dev:veni_password@127.0.0.1:5432/veni_db`. The
+  role and password match the compose file. Apply schema with
+  `pnpm exec prisma migrate deploy`. `prisma generate` needs `DATABASE_URL`
+  even though it does not connect.
+- Mailpit: SMTP `127.0.0.1:1025`, UI http://127.0.0.1:8025.
+- Inngest dev server: http://127.0.0.1:8288, synced to `/api/inngest`.
+- `.env` is gitignored. When it is missing, the start script writes one.
+  `BETTER_AUTH_URL` is `http://localhost:3000`, so sign-up from the browser has
+  to use that origin.
+- Open the app at http://localhost:3000 or http://127.0.0.1:3000.
+  `next.config.ts` lists `127.0.0.1` in `allowedDevOrigins`. Without that, Next
+  blocks the dev socket for that host and the page stays static HTML.
+- `policy-rc.d` blocks `service postgresql start` in this image. Use
+  `pg_ctlcluster 16 main start`.
+- Delete `.next` before `pnpm dev` if a production `pnpm build` ran in the same
+  tree and the dev page stops responding to clicks.
+
 ## Git
 
 integration: on
