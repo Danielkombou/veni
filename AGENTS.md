@@ -52,7 +52,7 @@ as you go rather than copying it across:
 - `index.html` title, description, `og:site_name`, `og:title`, `twitter:title`
 - `src/components/Header.tsx`, the logo wordmark
 - `src/components/Footer.tsx`, the copyright line
-- `src/App.css`, the `.certigen-app` root class, and its use in `App.tsx`
+- `src/App.css`, the app root class, and its use in `App.tsx`
 
 In this repo the equivalent surfaces are `app/layout.tsx` for metadata (title, description,
 Open Graph, Twitter) and the `Header` and `Footer` components. There is no `index.html`,
@@ -248,7 +248,7 @@ element warnings that predate this work, and `pnpm test` passes 81 tests over
 reachable only through the saved choice and the operating system. Route shape and the app
 shell are feature 3, and that is where the control gets its home. `app/page.tsx` is still the
 starter page and hardcodes `bg-zinc-50`, `bg-white`, `bg-black` and `text-black`, so it
-cannot show the theme. The CertiGen source has not been ported yet, and the rebrand has not
+cannot show the theme. The reference React source has not been ported yet, and the rebrand has not
 been applied to any ported code since nothing is ported.
 
 ## Conventions
