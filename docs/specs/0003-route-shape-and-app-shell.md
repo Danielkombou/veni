@@ -65,7 +65,7 @@ position is one integer held in the generator page's own component.
   empty page cannot be mistaken for a broken one.
 - **AC-3**: The header renders on both routes and stays put while the page scrolls. Its background is
   fully opaque, so content scrolling underneath never shows through it.
-- **AC-4**: The wordmark reads `Veni`, never `CertiGen`, and links to `/` now that there are two
+- **AC-4**: The wordmark reads `Veni` and links to `/` now that there are two
   routes.
 - **AC-5**: Pricing, Docs and Login each fire their reference alert strings exactly:
   `Pricing plans coming soon!`, `Documentation coming soon!`, `Login modal coming soon!`. Pricing and
