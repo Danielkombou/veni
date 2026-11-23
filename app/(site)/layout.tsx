@@ -5,7 +5,7 @@ export default function SiteLayout({ children }: LayoutProps<"/">) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      {children}
+      <div className="flex flex-1 flex-col">{children}</div>
       <Footer year={new Date().getFullYear()} />
     </div>
   );
