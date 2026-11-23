@@ -39,9 +39,7 @@ Parity means all of this matches:
    sample PDF download).
 5. The look and feel, including dark mode.
 
-Branding and the design system are the two deliberate exceptions. Where the React app says
-CertiGen, this app says Veni, and the purple theme is replaced by the Veni theme below.
-Nothing else may differ.
+Branding and the design system are the two deliberate exceptions. This app uses Veni branding, and the purple theme is replaced by the Veni theme below. Nothing else may differ.
 
 ## Branding
 
