@@ -1,22 +1,22 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { organization } from "better-auth/plugins";
-import {
-  ac,
-  owner,
-  admin,
-  member,
-  eventManager,
-  staff,
-  speaker,
-  volunteer,
-} from "./permissions";
 import { prisma } from "@/lib/prisma";
 import {
-  sendVerificationEmail,
-  sendResetPasswordEmail,
   sendInvitationEmail,
+  sendResetPasswordEmail,
+  sendVerificationEmail,
 } from "./email";
+import {
+  ac,
+  admin,
+  eventManager,
+  member,
+  owner,
+  speaker,
+  staff,
+  volunteer,
+} from "./permissions";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
