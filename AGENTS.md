@@ -43,8 +43,7 @@ Branding and the design system are the two deliberate exceptions. This app uses 
 
 ## Branding
 
-The name is **Veni**. Capital V, lowercase eni. Never CertiGen, never certigen, never
-certi-gen in anything user facing.
+The name is **Veni**. Capital V, lowercase eni. Never use the old product name in anything user facing.
 
 The React app still carries the old name in 12 places, so when porting, change the name
 as you go rather than copying it across:
