@@ -123,7 +123,7 @@ export function StepPreview({
           </div>
 
           <div
-            className="certificate-mockup relative w-full max-w-xl bg-white border-2 border-gray-300 rounded-xl shadow-2xl overflow-hidden"
+            className="certificate-mockup relative mx-auto w-full max-w-xl bg-white border-2 border-gray-300 rounded-xl shadow-2xl overflow-hidden"
             style={{
               aspectRatio: `${aspectRatio} / 1`,
               backgroundImage: templateDataUrl
