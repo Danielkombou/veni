@@ -17,7 +17,7 @@ upload a certificate template, upload a list of recipient names, position the na
 page, preview it, then generate and download hundreds of personalised certificates as a
 ZIP.
 
-The product was called CertiGen until the rebrand. This app is Veni.
+This app is Veni.
 
 ## The one rule that matters
 
