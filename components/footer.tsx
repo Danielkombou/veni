@@ -16,7 +16,7 @@ export function Footer({ year }: { year: number }) {
   }, [year]);
 
   return (
-    <footer className="border-t border-border py-10 text-center text-sm text-muted-foreground">
+    <footer className="border-t border-border px-6 py-10 text-center text-sm text-muted-foreground lg:px-12">
       <p>&copy; {current} Veni. All rights reserved.</p>
     </footer>
   );
