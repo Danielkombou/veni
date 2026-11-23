@@ -262,6 +262,7 @@ been applied to any ported code since nothing is ported.
 - `vitest.setup.ts` stubs `window.matchMedia`. jsdom implements none of it, so any test that
   renders the theme provider, directly or through `app/layout.tsx`, throws without the stub.
   Removing it fails 10 tests today. Keep the stub before debugging such a failure.
+- When adding variables to `.env`, append or update only the relevant keys; never delete or overwrite unrelated existing variables.
 
 ## Per-file commits
 
