@@ -1,13 +1,13 @@
-import { createAuthClient } from "better-auth/react";
 import { organizationClient } from "better-auth/client/plugins";
+import { createAuthClient } from "better-auth/react";
 import {
   ac,
-  owner,
   admin,
-  member,
   eventManager,
-  staff,
+  member,
+  owner,
   speaker,
+  staff,
   volunteer,
 } from "@/lib/auth/permissions";
 
