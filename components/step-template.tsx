@@ -43,7 +43,7 @@ export function StepTemplate({
           : "border-border bg-muted",
       )}
     >
-      <div className="mb-4 flex items-center gap-4">
+      <div className="mb-4 flex items-center gap-3 sm:gap-4">
         <span className="rounded-md border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-sm font-bold text-primary">
           Step 1
         </span>
@@ -66,7 +66,7 @@ export function StepTemplate({
           onNext={onNext}
         />
       ) : (
-        <div className="flex items-center justify-between text-sm font-medium">
+        <div className="flex items-center justify-between gap-3 text-sm font-medium">
           <span className="flex min-w-0 items-center gap-2">
             <FileText
               className="size-4 shrink-0 text-muted-foreground"
