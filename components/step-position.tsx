@@ -75,7 +75,7 @@ export function StepPosition({
           : "border-border bg-muted",
       )}
     >
-      <div className="mb-4 flex items-center gap-4">
+      <div className="mb-4 flex items-center gap-3 sm:gap-4">
         <span className="rounded-md border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-sm font-bold text-primary">
           Step 3
         </span>
@@ -188,7 +188,7 @@ export function StepPosition({
                 placeholder="#1f2847"
                 className="p-2 rounded border border-border bg-background text-sm font-mono w-32"
               />
-              <div className="flex items-center gap-2 flex-wrap ml-auto">
+              <div className="flex items-center gap-2 flex-wrap sm:ml-auto">
                 {COLOR_SWATCHES.map((sw) => (
                   <button
                     key={sw.value}
@@ -230,8 +230,8 @@ export function StepPosition({
           </Button>
         </div>
       ) : (
-        <div className="flex justify-between items-center text-sm font-medium">
-          <span>
+        <div className="flex flex-wrap items-center justify-between gap-3 text-sm font-medium">
+          <span className="min-w-0 break-words">
             Name Column: {nameColumn} | Color: {nameColor}
           </span>
           <Button variant="outline" size="xs" onClick={onEdit}>
