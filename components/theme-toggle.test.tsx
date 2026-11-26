@@ -35,7 +35,7 @@ describe("theme toggle (AC-3, AC-4, AC-5)", () => {
     expect(items.map((item) => item.textContent?.trim())).toEqual([
       "Light",
       "Dark",
-      "Follow the system",
+      "System",
     ]);
     expect(
       items.filter((item) => item.getAttribute("aria-checked") === "true"),
