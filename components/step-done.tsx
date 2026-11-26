@@ -72,7 +72,7 @@ export function StepDone({
           variant="outline"
           onClick={onDownloadSingle}
           disabled={isDownloading}
-          className="w-full sm:flex-1 py-4 px-6"
+          className="h-auto w-full whitespace-normal py-4 px-6 text-center sm:flex-1"
           size="lg"
         >
           Download Sample PDF ({firstPdfName})
