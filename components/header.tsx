@@ -17,7 +17,7 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-border bg-background px-6 py-5 lg:px-12">
+    <header className="sticky top-0 z-50 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-b border-border bg-background px-4 py-4 sm:px-6 sm:py-5 lg:px-12">
       <Link
         href="/"
         className="flex items-center gap-3 text-xl font-bold text-foreground"
@@ -26,7 +26,7 @@ export function Header() {
         Veni
       </Link>
 
-      <nav className="ml-auto flex items-center gap-6">
+      <nav className="ml-auto flex flex-wrap items-center gap-3 sm:gap-6">
         {/*
           Pricing and Docs stay anchors with the default prevented, matching the
           reference app. Their href is `/` rather than the reference's `#pricing`
