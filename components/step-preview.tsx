@@ -85,7 +85,7 @@ export function StepPreview({
           : "border-border bg-muted",
       )}
     >
-      <div className="mb-4 flex items-center gap-4">
+      <div className="mb-4 flex items-center gap-3 sm:gap-4">
         <span className="rounded-md border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-sm font-bold text-primary">
           Step 4
         </span>
@@ -199,7 +199,7 @@ export function StepPreview({
           <Button
             onClick={onGenerate}
             disabled={isGenerating || recipients.length === 0}
-            className="w-full py-4 self-end"
+            className="h-auto w-full whitespace-normal py-4 text-center"
             size="lg"
           >
             {isGenerating
@@ -208,8 +208,10 @@ export function StepPreview({
           </Button>
         </div>
       ) : (
-        <div className="flex justify-between items-center text-sm font-medium">
-          <span>Successfully generated {recipients.length} certificates</span>
+        <div className="flex flex-wrap items-center justify-between gap-3 text-sm font-medium">
+          <span className="min-w-0">
+            Successfully generated {recipients.length} certificates
+          </span>
           <Button variant="outline" size="xs" onClick={onCancel ?? (() => {})}>
             Edit
           </Button>
