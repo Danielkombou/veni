@@ -26,7 +26,7 @@ export function Header() {
         Veni
       </Link>
 
-      <nav className="ml-auto flex flex-wrap items-center gap-3 sm:gap-6">
+      <nav className="flex w-full flex-wrap items-center justify-end gap-3 sm:ml-auto sm:w-auto sm:gap-6">
         {/*
           Pricing and Docs stay anchors with the default prevented, matching the
           reference app. Their href is `/` rather than the reference's `#pricing`
