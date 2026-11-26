@@ -78,7 +78,7 @@ export function ThemeToggle() {
             Dark
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="system" closeOnClick>
-            Follow the system
+            System
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
