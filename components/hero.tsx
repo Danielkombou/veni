@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 export function Hero() {
   return (
     <section className="flex flex-col items-center px-4 py-20 text-center">
-      <Badge className="mb-6 border border-primary/30 bg-primary/10 px-3.5 py-1.5 font-mono text-primary">
+      <Badge className="mb-6 max-w-full whitespace-normal border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-center font-mono text-primary">
         <Zap aria-hidden="true" />
         Instant Bulk Certificate Generation &amp; PDF Export
       </Badge>
